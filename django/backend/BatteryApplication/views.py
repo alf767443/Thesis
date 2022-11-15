@@ -3,63 +3,63 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from BatteryApplication.models import Charge, Status
-from BatteryApplication.serializers import ChargeSerializer,EmployeeSerializer
+from BatteryApplication.models import Physical, Status
+from BatteryApplication.serializers import PhysicalSerializer,StatusSerializer
 
 from django.core.files.storage import default_storage
 
 # Create your views here.
 
 @csrf_exempt
-def chargeApi(request,id=0):
+def physicalApi(request,id=0):
     if request.method=='GET':
-        charge = Charge.objects.all()
-        charge_serializer=ChargeSerializer(charge,many=True)
-        return JsonResponse(charge_serializer.data,safe=False)
+        physical = Physical.objects.all()
+        physical_serializer=PhysicalSerializer(physical,many=True)
+        return JsonResponse(physical_serializer.data,safe=False)
     elif request.method=='POST':
-        charge_data=JSONParser().parse(request)
-        charge_serializer=ChargeSerializer(data=charge_data)
-        if charge_serializer.is_valid():
-            charge_serializer.save()
+        physical_data=JSONParser().parse(request)
+        physical_serializer=PhysicalSerializer(data=physical_data)
+        if physical_serializer.is_valid():
+            physical_serializer.save()
             return JsonResponse("Added Successfully",safe=False)
         return JsonResponse("Failed to Add",safe=False)
     elif request.method=='PUT':
-        charge_data=JSONParser().parse(request)
-        charge=Charge.objects.get(ChargeId=charge_data['ChargeId'])
-        charge_serializer=ChargeSerializer(charge,data=charge_data)
-        if charge_serializer.is_valid():
-            charge_serializer.save()
+        physical_data=JSONParser().parse(request)
+        physical=Physical.objects.get(PhysicalId=physical_data['PhysicalId'])
+        physical_serializer=PhysicalSerializer(physical,data=physical_data)
+        if physical_serializer.is_valid():
+            physical_serializer.save()
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update")
     elif request.method=='DELETE':
-        charge=Charge.objects.get(ChargeId=id)
-        charge.delete()
+        physical=Physical.objects.get(PhysicalId=id)
+        physical.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
 @csrf_exempt
-def employeeApi(request,id=0):
+def statusApi(request,id=0):
     if request.method=='GET':
-        employees = Employees.objects.all()
-        employees_serializer=EmployeeSerializer(employees,many=True)
-        return JsonResponse(employees_serializer.data,safe=False)
+        status = Status.objects.all()
+        status_serializer=StatusSerializer(status,many=True)
+        return JsonResponse(status_serializer.data,safe=False)
     elif request.method=='POST':
-        employee_data=JSONParser().parse(request)
-        employees_serializer=EmployeeSerializer(data=employee_data)
-        if employees_serializer.is_valid():
-            employees_serializer.save()
+        status_data=JSONParser().parse(request)
+        status_serializer=StatusSerializer(data=status_data)
+        if status_serializer.is_valid():
+            status_serializer.save()
             return JsonResponse("Added Successfully",safe=False)
         return JsonResponse("Failed to Add",safe=False)
     elif request.method=='PUT':
-        employee_data=JSONParser().parse(request)
-        employee=Employees.objects.get(EmployeeId=employee_data['EmployeeId'])
-        employees_serializer=EmployeeSerializer(employee,data=employee_data)
-        if employees_serializer.is_valid():
-            employees_serializer.save()
+        status_data=JSONParser().parse(request)
+        status=Status.objects.get(StatusId=status_data['StatusId'])
+        status_serializer=StatusSerializer(status,data=status_data)
+        if status_serializer.is_valid():
+            status_serializer.save()
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update")
     elif request.method=='DELETE':
-        employee=Employees.objects.get(EmployeeId=id)
-        employee.delete()
+        status=Status.objects.get(StatusId=id)
+        status.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
 @csrf_exempt

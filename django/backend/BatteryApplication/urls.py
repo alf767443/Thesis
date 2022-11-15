@@ -1,10 +1,10 @@
 from django.urls import re_path as url
-from TestApp import views
+from BatteryApplication import views
 
 urlpatterns=[
-    url(r'^status$', views.departmentApi),
-    url(r'^status/([0-9]+)$', views.departmentApi),
+    url(r'^status$', views.statusApi),
+    url(r'^status/([0-9]+)$', views.statusApi),
     
-    url(r'^employee$', views.employeeApi),
-    url(r'^employee/([0-9]+)$', views.employeeApi)
+    url(r'^charge$', views.physicalApi),
+    url(r'^charge/([0-9]+)$', views.physicalApi)
 ]

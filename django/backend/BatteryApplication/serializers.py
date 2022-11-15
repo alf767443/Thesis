@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from BatteryApplication.models import Charge, Status
+from BatteryApplication.models import Physical, Status
 
-class ChargeSerializer(serializers.ModelSerializer):
+class PhysicalSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Charge
-        fields=('ChargeId', 'ChargeVoltage')
+        model=Physical
+        fields=('PhysicalId', 'PhysicalVoltage', 'PhysicalCurrent', 'PhysicalTemperature')
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
