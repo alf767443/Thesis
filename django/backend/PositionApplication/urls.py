@@ -9,7 +9,7 @@ urlpatterns=[
     url(r'^odometry/([0-9]+)$', views.odometryApi),
     
     url(r'^fiducial$', views.fiducialApi),
-    url(r'^fiducial/([0-9]+)$', views.fiducialApi)
+    url(r'^fiducial/([0-9]+)$', views.fiducialApi),
 
     url(r'^gyroscope$', views.gyroscopeApi),
     url(r'^gyroscope/([0-9]+)$', views.gyroscopeApi)

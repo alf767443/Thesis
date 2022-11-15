@@ -4,7 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
 from BatteryApplication.models import Physical, Status
-from BatteryApplication.serializers import PhysicalSerializer,StatusSerializer
+from BatteryApplication.serializers import PhysicalSerializer, StatusSerializer
 
 from django.core.files.storage import default_storage
 

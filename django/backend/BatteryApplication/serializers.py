@@ -6,7 +6,7 @@ class PhysicalSerializer(serializers.ModelSerializer):
         model=Physical
         fields=('PhysicalId', 'PhysicalVoltage', 'PhysicalCurrent', 'PhysicalTemperature')
 
-class EmployeeSerializer(serializers.ModelSerializer):
+class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=Status
         fields=('StatusId', 'StatusBattery')

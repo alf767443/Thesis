@@ -9,5 +9,5 @@ class Physical(models.Model):
 
 class Status(models.Model):
     StatusId = models.AutoField(primary_key=True)
-    StatusBattery = models.BinaryField()
+    StatusBattery = models.IntegerField()
     StatusPercent = models.FloatField()
