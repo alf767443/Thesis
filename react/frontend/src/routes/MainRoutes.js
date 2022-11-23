@@ -27,14 +27,18 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
-            path: 'color',
-            element: <Color />
-        },
-        {
-            path: 'dashboard',
+            path: 'information',
             children: [
                 {
-                    path: 'default',
+                    path: 'dashboard',
+                    element: <DashboardDefault />
+                },
+                {
+                    path: 'dbs',
+                    element: <DashboardDefault />
+                },
+                {
+                    path: 'logs',
                     element: <DashboardDefault />
                 }
             ]
@@ -54,6 +58,10 @@ const MainRoutes = {
         {
             path: 'icons/ant',
             element: <AntIcons />
+        },
+        {
+            path: 'color',
+            element: <Color />
         }
     ]
 };
