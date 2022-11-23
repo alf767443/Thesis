@@ -4,8 +4,11 @@ import { lazy } from 'react';
 import Loadable from 'components/Loadable';
 import MainLayout from 'layout/MainLayout';
 
-// render - dashboard
-const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
+// Render - Dashboard
+const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
+
+// Render - Databases
+const Database = Loadable(lazy(() => import('pages/database')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -24,22 +27,22 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            element: <DashboardDefault />
+            element: <Dashboard />
         },
         {
             path: 'information',
             children: [
                 {
                     path: 'dashboard',
-                    element: <DashboardDefault />
+                    element: <Dashboard />
                 },
                 {
                     path: 'dbs',
-                    element: <DashboardDefault />
+                    element: <Database />
                 },
                 {
                     path: 'logs',
-                    element: <DashboardDefault />
+                    element: <Dashboard />
                 }
             ]
         },

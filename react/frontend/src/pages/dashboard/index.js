@@ -16,9 +16,6 @@ import { GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icon
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
-    const [value, setValue] = useState('today');
-    const [slot, setSlot] = useState('week');
-
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
             {/* Main block */}
