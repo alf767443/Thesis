@@ -1,8 +1,8 @@
 // Imported assets
-import { BarChartOutlined, FileTextOutlined } from '@ant-design/icons';
+import { BarChartOutlined, FileTextOutlined, CloudServerOutlined } from '@ant-design/icons';
 
 // Icons
-const icons = { BarChartOutlined, FileTextOutlined };
+const icons = { BarChartOutlined, FileTextOutlined, CloudServerOutlined };
 
 // --------- SideBar - Information --------- \\
 const information = {
@@ -16,6 +16,14 @@ const information = {
             type: 'item',
             url: '/information/dashboard',
             icon: icons.BarChartOutlined,
+            breadcrumbs: false
+        },
+        {
+            id: 'dbs',
+            title: 'Databases',
+            type: 'item',
+            url: '/information/dbs',
+            icon: icons.CloudServerOutlined,
             breadcrumbs: false
         },
         {
