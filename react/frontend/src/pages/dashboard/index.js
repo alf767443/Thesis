@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 
 // project import
 import debugBoxe from 'graphs/debugBox';
+import { OdometryCard } from 'tables/Odometry/index';
 import SalesColumnChart from 'graphs/SalesColumnChart';
 import DinamicGrid from 'components/DinamicGrid';
 import MonthlyBarChart from './MonthlyBarChart';
@@ -21,8 +22,7 @@ const DashboardDefault = () => {
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
             {/* Main block */}
-            <DinamicGrid Itens First={MonthlyBarChart} Second={SalesColumnChart} Third={SalesColumnChart} Fourth={MonthlyBarChart} />
-            <DinamicGrid Itens First={MonthlyBarChart} Second={SalesColumnChart} Third={SalesColumnChart} Fourth={MonthlyBarChart} />
+            <OdometryCard />
         </Grid>
     );
 };
