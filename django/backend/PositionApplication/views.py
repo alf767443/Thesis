@@ -3,13 +3,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from PositionApplication.models import Odometry, Fiducial, Gyroscope
-from PositionApplication.serializers import OdometrySerializer, FiducialSerializer, GyroscopeSerializer
+from PositionApplication.models import Odometry, Fiducial, Gyroscope, GlobalPosition
+from PositionApplication.serializers import OdometrySerializer, FiducialSerializer, GyroscopeSerializer, GlobalPositionSerializer
 
 from django.core.files.storage import default_storage
 
-# Create your views here.
-
+# Odometry API
 @csrf_exempt
 def odometryApi(request,id=0):
     if request.method=='GET':
@@ -36,6 +35,7 @@ def odometryApi(request,id=0):
         odometry.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
+# Fiducial marks API
 @csrf_exempt
 def fiducialApi(request,id=0):
     if request.method=='GET':
@@ -62,6 +62,7 @@ def fiducialApi(request,id=0):
         fiducial.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
+# Gyroscope API
 @csrf_exempt
 def gyroscopeApi(request,id=0):
     if request.method=='GET':
@@ -88,8 +89,29 @@ def gyroscopeApi(request,id=0):
         gyroscope.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
+# Global position API
 @csrf_exempt
-def SaveFile(request):
-    file=request.FILES['file']
-    file_name=default_storage.save(file.name,file)
-    return JsonResponse(file_name,safe=False)
+def globalpositionApi(request,id=0):
+    if request.method=='GET':
+        globalposition = GlobalPosition.objects.all()
+        globalposition_serializer=GlobalPositionSerializer(globalposition,many=True)
+        return JsonResponse(globalposition_serializer.data,safe=False)
+    elif request.method=='POST':
+        globalposition_data=JSONParser().parse(request)
+        globalposition_serializer=GlobalPositionSerializer(data=globalposition_data)
+        if globalposition_serializer.is_valid():
+            globalposition_serializer.save()
+            return JsonResponse("Added Successfully",safe=False)
+        return JsonResponse("Failed to Add",safe=False)
+    elif request.method=='PUT':
+        globalposition_data=JSONParser().parse(request)
+        globalposition=GlobalPosition.objects.get(GlobalPositionId=globalposition_data['GlobalPositionId'])
+        globalposition_serializer=GlobalPositionSerializer(globalposition,data=globalposition_data)
+        if globalposition_serializer.is_valid():
+            globalposition_serializer.save()
+            return JsonResponse("Updated Successfully",safe=False)
+        return JsonResponse("Failed to Update")
+    elif request.method=='DELETE':
+        globalposition=GlobalPosition.objects.get(GlobalPositionId=id)
+        globalposition.delete()
+        return JsonResponse("Deleted Successfully",safe=False)

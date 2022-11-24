@@ -13,3 +13,8 @@ class Fiducial(models.Model):
 class Gyroscope(models.Model):
     GyroscopeId = models.AutoField(primary_key=True)
     GyroscopeAngle = models.IntegerField()
+
+class GlobalPosition(models.Model):
+    GlobalPositionId = models.AutoField(primary_key=True)
+    GlobalPositionX = models.IntegerField()
+    GlobalPositionY = models.IntegerField()

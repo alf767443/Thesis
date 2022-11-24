@@ -45,9 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'TestApp.apps.TestappConfig',
+    'ActionsApplication.apps.ActionsapplicationConfig',
     'BatteryApplication.apps.BatteryapplicationConfig',
+    'DecisionsApplication.apps.DecisionsapplicationConfig',
     'PositionApplication.apps.PositionapplicationConfig',
+    'RouteApplication.apps.RouteapplicationConfig',
+    
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
