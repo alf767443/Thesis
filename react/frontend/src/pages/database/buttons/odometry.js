@@ -1,18 +1,33 @@
 import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import { Icon, IconButton, Box, Typography, Stack } from '@mui/material';
+import TireRepairIcon from '@mui/icons-material/TireRepair';
+import MainCard from 'components/MainCard';
+
+import styles from './styles';
+
+const Title = () => {
+    return <>Odometry</>;
+};
 
 export default function ContainedButtons() {
     return (
-        <Stack direction="row" spacing={2}>
-            <Button variant="contained">Contained</Button>
-            <Button variant="contained" disabled>
-                Disabled
-            </Button>
-            <Button variant="contained" href="#contained-buttons">
-                Link
-            </Button>
-        </Stack>
+        <MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
+            <Box sx={styles.box.sx}>
+                <Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
+                    <Typography variant={styles.typography.variant} color={styles.typography.color}>
+                        <Title />
+                    </Typography>
+                    <IconButton
+                        color={styles.icon.color}
+                        style={styles.button.style}
+                        iconStyle={styles.icon.style}
+                        sx={styles.button.sx}
+                        href="odometry"
+                    >
+                        <TireRepairIcon sx={styles.icon.style} />
+                    </IconButton>
+                </Stack>
+            </Box>
+        </MainCard>
     );
 }
