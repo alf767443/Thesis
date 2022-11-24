@@ -63,6 +63,7 @@ export class DataTable extends Component {
                 pagination={this.state.pagination}
                 loading={this.state.loading}
                 onChange={this.handleTableChange}
+                sx={this.props.sx}
             />
         );
     }

@@ -9,6 +9,7 @@ const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 
 // Render - Databases
 const Database = Loadable(lazy(() => import('pages/database')));
+const DBOdometry = Loadable(lazy(() => import('pages/database/odometry')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -38,7 +39,16 @@ const MainRoutes = {
                 },
                 {
                     path: 'dbs',
-                    element: <Database />
+                    children: [
+                        {
+                            path: '',
+                            element: <Database />
+                        },
+                        {
+                            path: 'odometry',
+                            element: <DBOdometry />
+                        }
+                    ]
                 },
                 {
                     path: 'logs',

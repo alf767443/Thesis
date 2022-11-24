@@ -4,13 +4,13 @@ import { Grid } from '@mui/material';
 import { OdometryCard } from 'tables/Odometry';
 
 // --------- database - odometry --------- \\
-const Odometry = () => {
+const dbOdometry = () => {
     return (
-        <Grid container rowSpacing={0} columnSpacing={0}>
+        <Grid container rowSpacing={2.75} columnSpacing={1}>
             {/* Main block */}
             <OdometryCard />
         </Grid>
     );
 };
 
-export default Odometry;
+export default dbOdometry;

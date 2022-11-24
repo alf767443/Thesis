@@ -7,12 +7,13 @@ import MainCard from 'components/MainCard';
 
 // Import from project
 import { DataTable } from './dataTable';
+import tableSx from 'tables/tableSx';
 
 // --------- table odometry - index --------- \\
 export class OdometryCard extends Component {
     render() {
         return (
-            <MainCard sx={{ mt: 2 }} content={false}>
+            <MainCard sx={tableSx} content={false}>
                 <Box sx={{ p: 3, pb: 0 }}>
                     <Stack spacing={2}>
                         <Typography variant="h3" color="textSecondary">

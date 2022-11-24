@@ -41,6 +41,7 @@
             }
         ],
         "prettier/prettier": [
+            "error",
             2,
             {
                 "bracketSpacing": true,
