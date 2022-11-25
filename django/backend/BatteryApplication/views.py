@@ -35,6 +35,11 @@ def physicalApi(request,id=0):
         physical=Physical.objects.get(PhysicalId=id)
         physical.delete()
         return JsonResponse("Deleted Successfully",safe=False)
+    elif request.method=='LAST':
+        physical=Physical.objects.last()
+        physical_serializer=PhysicalSerializer(physical, many=False)
+        return JsonResponse(physical_serializer.data,safe=False)
+
 
 @csrf_exempt
 def statusApi(request,id=0):
@@ -61,9 +66,7 @@ def statusApi(request,id=0):
         status=Status.objects.get(StatusId=id)
         status.delete()
         return JsonResponse("Deleted Successfully",safe=False)
-
-@csrf_exempt
-def SaveFile(request):
-    file=request.FILES['file']
-    file_name=default_storage.save(file.name,file)
-    return JsonResponse(file_name,safe=False)
+    elif request.method=='LAST':
+        status=Physical.objects.lasst()
+        status_serializer=StatusSerializer(status, many=False)
+        return JsonResponse(status_serializer.data,safe=False)

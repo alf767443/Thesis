@@ -10,17 +10,17 @@ const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 // Render - Databases
 const Database = Loadable(lazy(() => import('pages/database')));
 
-const DBActions = Loadable(lazy(() => import('pages/database/actions')));
-const DBAdministrator = Loadable(lazy(() => import('pages/database/administrator')));
-const DBFiducialmark = Loadable(lazy(() => import('pages/database/fiducialmark')));
-const DBGlobalposition = Loadable(lazy(() => import('pages/database/globalposition')));
-const DBGyroscope = Loadable(lazy(() => import('pages/database/gyroscope')));
-const DBOdometry = Loadable(lazy(() => import('pages/database/odometry')));
-const DBPhysical = Loadable(lazy(() => import('pages/database/physical')));
-const DBRemote = Loadable(lazy(() => import('pages/database/remote')));
-const DBRobot = Loadable(lazy(() => import('pages/database/robot')));
-const DBRoute = Loadable(lazy(() => import('pages/database/route')));
-const DBStatus = Loadable(lazy(() => import('pages/database/status')));
+const DBActions = Loadable(lazy(() => import('pages/database/pages/actions')));
+const DBAdministrator = Loadable(lazy(() => import('pages/database/pages/administrator')));
+const DBFiducialmark = Loadable(lazy(() => import('pages/database/pages/fiducialmark')));
+const DBGlobalposition = Loadable(lazy(() => import('pages/database/pages/globalposition')));
+const DBGyroscope = Loadable(lazy(() => import('pages/database/pages/gyroscope')));
+const DBOdometry = Loadable(lazy(() => import('pages/database/pages/odometry')));
+const DBPhysical = Loadable(lazy(() => import('pages/database/pages/physical')));
+const DBRemote = Loadable(lazy(() => import('pages/database/pages/remote')));
+const DBRobot = Loadable(lazy(() => import('pages/database/pages/robot')));
+const DBRoute = Loadable(lazy(() => import('pages/database/pages/route')));
+const DBStatus = Loadable(lazy(() => import('pages/database/pages/status')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
