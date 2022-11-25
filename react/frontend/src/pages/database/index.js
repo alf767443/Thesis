@@ -27,14 +27,14 @@ const DataBase = () => {
                 <Typography variant="h3" color="textSecondary"></Typography>
                 {/*Position databases*/}
                 <PositionButtons />
+                {/*Decisions databases*/}
+                <DecisionButtons />
                 {/*Battery databases*/}
                 <BatteryButtons />
                 {/*Actions databases*/}
                 <ActionButtons />
                 {/*Route databases*/}
                 <RouteButtons />
-                {/*Decisions databases*/}
-                <DecisionButtons />
             </Stack>
         </Grid>
     );
