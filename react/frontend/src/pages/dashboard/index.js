@@ -5,7 +5,7 @@ import { Grid } from '@mui/material';
 
 // project import
 import debugBoxe from 'graphs/debugBox';
-import { OdometryCard } from 'tables/Odometry/index';
+import { OdometryCard } from 'tables/Position//Odometry/index';
 import SalesColumnChart from 'graphs/SalesColumnChart';
 import DinamicGrid from 'components/DinamicGrid';
 import MonthlyBarChart from './MonthlyBarChart';

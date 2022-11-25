@@ -11,27 +11,29 @@ import { url } from 'djangoAPI/url';
 const columns = [
     {
         title: 'Id',
-        dataIndex: 'OdometryId',
+        dataIndex: 'GlobalPositionId',
         key: 'id',
         sorter: {
-            compare: (a, b) => a.OdometryId - b.OdometryId,
-            multiple: 1
+            compare: (a, b) => a.GlobalPositionId - b.GlobalPositionId,
+            multiple: 3
         },
         defaultSortOrder: 'descend'
     },
     {
-        title: 'Left',
-        dataIndex: 'OdometryLeft',
-        key: 'left'
+        title: 'X',
+        dataIndex: 'GlobalPositionX',
+        key: 'x'
     },
     {
-        title: 'Right',
-        dataIndex: 'OdometryRight',
-        key: 'right'
+        title: 'Y',
+        dataIndex: 'GlobalPositionY',
+        key: 'y'
     }
 ];
 
-// --------- table odometry - datatable --------- \\
+const urls = 'position/globalposition';
+
+// --------- table globalposition - datatable --------- \\
 export class DataTable extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +44,7 @@ export class DataTable extends Component {
     }
 
     refreshList() {
-        fetch(url.API + 'odometry')
+        fetch(url.API + urls)
             .then((response) => response.json())
             .then((data) => {
                 this.setState({ data: data });

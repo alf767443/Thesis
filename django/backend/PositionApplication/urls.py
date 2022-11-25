@@ -8,8 +8,8 @@ urlpatterns=[
     url(r'^position/odometry$', views.odometryApi),
     url(r'^position/odometry/([0-9]+)$', views.odometryApi),
     
-    url(r'^position/fiducial$', views.fiducialApi),
-    url(r'^position/fiducial/([0-9]+)$', views.fiducialApi),
+    url(r'^position/fiducialmark$', views.fiducialApi),
+    url(r'^position/fiducialmark/([0-9]+)$', views.fiducialApi),
 
     url(r'^position/gyroscope$', views.gyroscopeApi),
     url(r'^position/gyroscope/([0-9]+)$', views.gyroscopeApi),

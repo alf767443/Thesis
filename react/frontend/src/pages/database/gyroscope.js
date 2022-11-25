@@ -1,16 +1,16 @@
 // Import from MUI
 import { Grid } from '@mui/material';
 // Import from project
-import { OdometryCard } from 'tables/Position/Odometry';
+import { GyroscopeCard } from 'tables/Position/Gyroscope';
 
 // --------- database - odometry --------- \\
-const dbOdometry = () => {
+const dbGyroscope = () => {
     return (
         <Grid container rowSpacing={2.75} columnSpacing={1}>
             {/* Main block */}
-            <OdometryCard />
+            <GyroscopeCard />
         </Grid>
     );
 };
 
-export default dbOdometry;
+export default dbGyroscope;

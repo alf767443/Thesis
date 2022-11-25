@@ -9,7 +9,18 @@ const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 
 // Render - Databases
 const Database = Loadable(lazy(() => import('pages/database')));
+
+const DBActions = Loadable(lazy(() => import('pages/database/actions')));
+const DBAdministrator = Loadable(lazy(() => import('pages/database/administrator')));
+const DBFiducialmark = Loadable(lazy(() => import('pages/database/fiducialmark')));
+const DBGlobalposition = Loadable(lazy(() => import('pages/database/globalposition')));
+const DBGyroscope = Loadable(lazy(() => import('pages/database/gyroscope')));
 const DBOdometry = Loadable(lazy(() => import('pages/database/odometry')));
+const DBPhysical = Loadable(lazy(() => import('pages/database/physical')));
+const DBRemote = Loadable(lazy(() => import('pages/database/remote')));
+const DBRobot = Loadable(lazy(() => import('pages/database/robot')));
+const DBRoute = Loadable(lazy(() => import('pages/database/route')));
+const DBStatus = Loadable(lazy(() => import('pages/database/status')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -45,8 +56,73 @@ const MainRoutes = {
                             element: <Database />
                         },
                         {
-                            path: 'odometry',
-                            element: <DBOdometry />
+                            path: 'position',
+                            children: [
+                                {
+                                    path: 'odometry',
+                                    element: <DBOdometry />
+                                },
+                                {
+                                    path: 'globalPosition',
+                                    element: <DBGlobalposition />
+                                },
+                                {
+                                    path: 'fiducialmark',
+                                    element: <DBFiducialmark />
+                                },
+                                {
+                                    path: 'gyroscope',
+                                    element: <DBGyroscope />
+                                }
+                            ]
+                        },
+                        {
+                            path: 'routes',
+                            children: [
+                                {
+                                    path: 'routes',
+                                    element: <DBRoute />
+                                }
+                            ]
+                        },
+                        {
+                            path: 'battery',
+                            children: [
+                                {
+                                    path: 'status',
+                                    element: <DBStatus />
+                                },
+                                {
+                                    path: 'physical',
+                                    element: <DBPhysical />
+                                }
+                            ]
+                        },
+                        {
+                            path: 'decisions',
+                            children: [
+                                {
+                                    path: 'administrator',
+                                    element: <DBAdministrator />
+                                },
+                                {
+                                    path: 'remote',
+                                    element: <DBRemote />
+                                },
+                                {
+                                    path: 'robot',
+                                    element: <DBRobot />
+                                }
+                            ]
+                        },
+                        {
+                            path: 'actions',
+                            children: [
+                                {
+                                    path: 'actions',
+                                    element: <DBActions />
+                                }
+                            ]
                         }
                     ]
                 },

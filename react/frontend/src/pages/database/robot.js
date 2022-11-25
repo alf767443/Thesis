@@ -1,16 +1,16 @@
 // Import from MUI
 import { Grid } from '@mui/material';
 // Import from project
-import { OdometryCard } from 'tables/Position/Odometry';
+import { RobotCard } from 'tables/Decisions/Robot';
 
 // --------- database - odometry --------- \\
-const dbOdometry = () => {
+const dbRobot = () => {
     return (
         <Grid container rowSpacing={2.75} columnSpacing={1}>
             {/* Main block */}
-            <OdometryCard />
+            <RobotCard />
         </Grid>
     );
 };
 
-export default dbOdometry;
+export default dbRobot;
