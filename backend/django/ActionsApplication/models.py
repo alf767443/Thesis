@@ -7,3 +7,7 @@ class Actions(models.Model):
     ActionsStatus = models.IntegerField()
     ActionsPriority = models.IntegerField()
     ActionsSource = models.IntegerField()
+
+class Queue(models.Model):
+    QueueId = models.AutoField(primary_key=True)
+    ActionsId = models.IntegerField()
