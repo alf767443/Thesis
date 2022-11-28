@@ -4,12 +4,13 @@ import ReactDOM from "react-dom";
 import { Liquid } from "@ant-design/plots";
 import { SvgIcon } from "@mui/material";
 import { BoltIcon } from "@mui/icons-material/Bolt";
+import $ from 'jquery';
 
 // Import from project
 import { url } from 'djangoAPI/url';
 import { Input } from "../../../node_modules/@mui/icons-material/index";
 
-const urls = 'battery/status';
+const urls = 'battery/status/last';
 
 export default class BatteryIcon extends React.Component {
 	constructor(props) {
@@ -21,18 +22,11 @@ export default class BatteryIcon extends React.Component {
     }
 
     refreshList() {
-		var raw = "";
-
-		var requestOptions = {
-			method: 'GET',
-			body: raw,
-			redirect: 'follow',
-		};
-
-		fetch(url.API + urls, requestOptions)
-			.then((response) => response.json())
-			.then((data) => {this.setState({ data: data })})
-			.catch((error) => console.log('error', error));
+        fetch(url.API + urls)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ data: data });
+            });
     }
 
     componentDidMount() {
@@ -74,15 +68,16 @@ export default class BatteryIcon extends React.Component {
 	statistic = [null];
 
 	color() {
-		if (this.props.percent < 0.2) {
+		let percent = this.state.data["StatusPercent"];
+		if (percent <= 0.2) {
 			return this.pallet[4];
-		} else if (this.props.percent < 0.4) {
+		} else if (percent <= 0.4) {
 			return this.pallet[3];
-		} else if (this.props.percent < 0.6) {
+		} else if (percent <= 0.6) {
 			return this.pallet[2];
-		} else if (this.props.percent < 0.8) {
+		} else if (percent <= 0.8) {
 			return this.pallet[1];
-		} else if (this.props.percent < 1) {
+		} else if (percent <= 1) {
 			return this.pallet[0];
 		} else {
 			return "#B3B3B3";
@@ -90,13 +85,12 @@ export default class BatteryIcon extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.data);
 		return (
 			<div>
 				<Liquid
 					{...this.config}
 					color={this.color()}
-					percent={this.props.percent}
+					percent={this.state.data["StatusPercent"]}
 					width={this.props.width}
 					height={this.props.height}
 					statistic={this.statistic}

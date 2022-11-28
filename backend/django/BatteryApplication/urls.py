@@ -6,5 +6,9 @@ urlpatterns=[
     url(r'^battery/status/([0-9]+)$', views.statusApi),
     
     url(r'^battery/physical$', views.physicalApi),
-    url(r'^battery/physical/([0-9]+)$', views.physicalApi)
+    url(r'^battery/physical/([0-9]+)$', views.physicalApi),
+
+    ## Get last battery status##
+    url(r'^battery/status/last$', views.lastStatusApi),
+    url(r'^battery/status/last/([0-9]+)$', views.lastStatusApi)
 ]

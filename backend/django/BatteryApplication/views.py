@@ -70,3 +70,10 @@ def statusApi(request,id=0):
         status=Status.objects.last()
         status_serializer=StatusSerializer(status, many=False)
         return JsonResponse(status_serializer.data,safe=False)
+
+@csrf_exempt
+def lastStatusApi(request,id=0):
+    if request.method=='GET':
+        status=Status.objects.last()
+        status_serializer=StatusSerializer(status, many=False)
+        return JsonResponse(status_serializer.data,safe=False)
