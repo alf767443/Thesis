@@ -9,4 +9,4 @@ class PhysicalSerializer(serializers.ModelSerializer):
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=Status
-        fields=('StatusId', 'StatusBattery')
+        fields=('StatusId', 'StatusBattery', 'StatusPercent')

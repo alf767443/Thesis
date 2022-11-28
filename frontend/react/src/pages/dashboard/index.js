@@ -23,7 +23,7 @@ const DashboardDefault = () => {
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
             {/* Main block */}
             <BatteryIcon percent={0.5} width={100} heigth={100} />
-            <App />
+            <App show={10}/>
         </Grid>
     );
 };

@@ -67,6 +67,6 @@ def statusApi(request,id=0):
         status.delete()
         return JsonResponse("Deleted Successfully",safe=False)
     elif request.method=='LAST':
-        status=Physical.objects.lasst()
+        status=Status.objects.last()
         status_serializer=StatusSerializer(status, many=False)
         return JsonResponse(status_serializer.data,safe=False)

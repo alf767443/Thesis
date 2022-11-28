@@ -1,13 +1,43 @@
+
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Liquid } from "@ant-design/plots";
 import { SvgIcon } from "@mui/material";
 import { BoltIcon } from "@mui/icons-material/Bolt";
 
+// Import from project
+import { url } from 'djangoAPI/url';
+import { Input } from "../../../node_modules/@mui/icons-material/index";
+
+const urls = 'battery/status';
+
 export default class BatteryIcon extends React.Component {
 	constructor(props) {
 		super(props);
-	}
+
+		this.state = {
+            data: []
+        };
+    }
+
+    refreshList() {
+		var raw = "";
+
+		var requestOptions = {
+			method: 'GET',
+			body: raw,
+			redirect: 'follow',
+		};
+
+		fetch(url.API + urls, requestOptions)
+			.then((response) => response.json())
+			.then((data) => {this.setState({ data: data })})
+			.catch((error) => console.log('error', error));
+    }
+
+    componentDidMount() {
+        this.refreshList();
+    }
 
 	pallet = ["#12B33A", "#97F218", "#F5F518", "#FF860D", "#D91616"];
 
@@ -60,6 +90,7 @@ export default class BatteryIcon extends React.Component {
 	}
 
 	render() {
+		console.log(this.state.data);
 		return (
 			<div>
 				<Liquid
