@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here
 class Actions(models.Model):
     ActionsId = models.AutoField(primary_key=True)
     ActionsAction = models.IntegerField()
@@ -10,4 +10,5 @@ class Actions(models.Model):
 
 class Queue(models.Model):
     QueueId = models.AutoField(primary_key=True)
+    QueueStatus = models.IntegerField()
     ActionsId = models.IntegerField()

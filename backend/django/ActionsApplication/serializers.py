@@ -7,6 +7,7 @@ class ActionsSerializer(serializers.ModelSerializer):
         fields=('ActionsId', 'ActionsAction', 'ActionsStatus', 'ActionsPriority', 'ActionsSource')
 
 class QueueSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model=Queue
-        fields=('QueueId', 'ActionsId')
+        fields='__all__'

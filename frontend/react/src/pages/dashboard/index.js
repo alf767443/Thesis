@@ -11,7 +11,6 @@ import DinamicGrid from 'components/DinamicGrid';
 import MonthlyBarChart from './MonthlyBarChart';
 import BatteryIcon from 'graphs/battery/batteryIcon';
 import App from 'graphs/queueActions'
-;
 
 // assets
 import { GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
