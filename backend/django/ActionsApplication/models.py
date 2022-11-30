@@ -11,4 +11,4 @@ class Actions(models.Model):
 class Queue(models.Model):
     QueueId = models.AutoField(primary_key=True)
     QueueStatus = models.IntegerField()
-    ActionsId = models.IntegerField()
+    ActionsId = models.OneToOneField(Actions, primary_key = False, on_delete=models.CASCADE, related_name='actions')
