@@ -17,6 +17,7 @@ const DBGlobalposition = Loadable(lazy(() => import('pages/database/pages/global
 const DBGyroscope = Loadable(lazy(() => import('pages/database/pages/gyroscope')));
 const DBOdometry = Loadable(lazy(() => import('pages/database/pages/odometry')));
 const DBPhysical = Loadable(lazy(() => import('pages/database/pages/physical')));
+const DBQueue = Loadable(lazy(() => import('pages/database/pages/queue')));
 const DBRemote = Loadable(lazy(() => import('pages/database/pages/remote')));
 const DBRobot = Loadable(lazy(() => import('pages/database/pages/robot')));
 const DBRoute = Loadable(lazy(() => import('pages/database/pages/route')));
@@ -121,6 +122,10 @@ const MainRoutes = {
                                 {
                                     path: 'actions',
                                     element: <DBActions />
+                                },
+                                {
+                                    path: 'queue',
+                                    element: <DBQueue />
                                 }
                             ]
                         }
