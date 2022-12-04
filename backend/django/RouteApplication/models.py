@@ -7,5 +7,5 @@ class Route(models.Model):
     RouteConsumptionEstimated = models.FloatField()
     RouteDistanceReal = models.FloatField()
     RouteConsumptionReal = models.FloatField()
-    RouteStartPoint = models.JSONField()
-    RouteEndPoint = models.JSONField()
+    #RouteStartPoint = models.JSONField()
+    #RouteEndPoint = models.JSONField()
