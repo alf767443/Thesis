@@ -8,6 +8,8 @@ from BatteryApplication.serializers import *
 
 from django.core.files.storage import default_storage
 
+from backend.class_readURL import *
+
 # Create your views here.
 
 @csrf_exempt
