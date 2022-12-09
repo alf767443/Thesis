@@ -36,7 +36,7 @@ const columns = [
     }
 ];
 
-const urls = 'battery/physical';
+const urls = 'battery/sensor';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

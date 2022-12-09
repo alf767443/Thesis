@@ -1,17 +1,6 @@
 from rest_framework import serializers
+#from rest_framework_mongoengine import serializers
 from BatteryApplication.models import *
-
-class PhysicalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Physical
-        fields=('PhysicalId', 'PhysicalVoltage', 'PhysicalCurrent', 'PhysicalTemperature')
-
-class StatusSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Status
-        fields=('StatusId', 'StatusBattery', 'StatusPercent')
-
-
 
 class SensorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,4 +16,8 @@ class BatterySerializer(serializers.ModelSerializer):
     class Meta:
         model=Battery
         fields=('__all__')
-        depth = 2
+        depth = 1
+
+class BatteryFullSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields=('__all__')

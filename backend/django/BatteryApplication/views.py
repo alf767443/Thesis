@@ -3,6 +3,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
+from pymongo import MongoClient
+from django.http import HttpResponse
+from django.core import serializers
+from bson.json_util import dumps, loads
+
 from BatteryApplication.models import *
 from BatteryApplication.serializers import *
 
@@ -12,82 +17,27 @@ from backend.class_readURL import *
 
 # Create your views here.
 
-@csrf_exempt
-def physicalApi(request,id=0):
-    if request.method=='GET':
-        physical = Physical.objects.all()
-        physical_serializer=PhysicalSerializer(physical,many=True)
-        return JsonResponse(physical_serializer.data,safe=False)
-    elif request.method=='POST':
-        physical_data=JSONParser().parse(request)
-        physical_serializer=PhysicalSerializer(data=physical_data)
-        if physical_serializer.is_valid():
-            physical_serializer.save()
-            return JsonResponse("Added Successfully",safe=False)
-        return JsonResponse("Failed to Add",safe=False)
-    elif request.method=='PUT':
-        physical_data=JSONParser().parse(request)
-        physical=Physical.objects.get(PhysicalId=physical_data['PhysicalId'])
-        physical_serializer=PhysicalSerializer(physical,data=physical_data)
-        if physical_serializer.is_valid():
-            physical_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
-        return JsonResponse("Failed to Update")
-    elif request.method=='DELETE':
-        physical=Physical.objects.get(PhysicalId=id)
-        physical.delete()
-        return JsonResponse("Deleted Successfully",safe=False)
-    elif request.method=='LAST':
-        physical=Physical.objects.last()
-        physical_serializer=PhysicalSerializer(physical, many=False)
-        return JsonResponse(physical_serializer.data,safe=False)
+client = MongoClient('mongodb://localhost:27017/')
 
-
-@csrf_exempt
-def statusApi(request,id=0):
-    if request.method=='GET':
-        status = Status.objects.all()
-        status_serializer=StatusSerializer(status,many=True)
-        return JsonResponse(status_serializer.data,safe=False)
-    elif request.method=='POST':
-        status_data=JSONParser().parse(request)
-        status_serializer=StatusSerializer(data=status_data)
-        if status_serializer.is_valid():
-            status_serializer.save()
-            return JsonResponse("Added Successfully",safe=False)
-        return JsonResponse("Failed to Add",safe=False)
-    elif request.method=='PUT':
-        status_data=JSONParser().parse(request)
-        status=Status.objects.get(StatusId=status_data['StatusId'])
-        status_serializer=StatusSerializer(status,data=status_data)
-        if status_serializer.is_valid():
-            status_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
-        return JsonResponse("Failed to Update")
-    elif request.method=='DELETE':
-        status=Status.objects.get(StatusId=id)
-        status.delete()
-        return JsonResponse("Deleted Successfully",safe=False)
-    elif request.method=='LAST':
-        status=Status.objects.last()
-        status_serializer=StatusSerializer(status, many=False)
-        return JsonResponse(status_serializer.data,safe=False)
-
-@csrf_exempt
-def lastStatusApi(request,id=0):
-    if request.method=='GET':
-        status=Status.objects.last()
-        status_serializer=StatusSerializer(status, many=False)
-        return JsonResponse(status_serializer.data,safe=False)
-        
 @csrf_exempt
 def sensorApi(request,id=0):
     if request.method=='GET':
-        sensor = Sensor.objects.all()
-        sensor_serializer=SensorSerializer(sensor,many=True)
-        return JsonResponse(sensor_serializer.data,safe=False)
+        result = client['CeDRI_UGV']['BatteryApplication_battery'].aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Sensor._id', 'Calculate'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
     elif request.method=='POST':
         sensor_data=JSONParser().parse(request)
+        print(sensor_data)
         sensor_serializer=SensorSerializer(data=sensor_data)
         if sensor_serializer.is_valid():
             sensor_serializer.save()
@@ -109,14 +59,23 @@ def sensorApi(request,id=0):
         sensor=Sensor.objects.last()
         sensor_serializer=SensorSerializer(sensor, many=False)
         return JsonResponse(sensor_serializer.data,safe=False)
-
-      
+  
 @csrf_exempt
 def calculateApi(request,id=0):
     if request.method=='GET':
-        calculate = Calculate.objects.all()
-        calculate_serializer=CalculateSerializer(calculate,many=True)
-        return JsonResponse(calculate_serializer.data,safe=False)
+        result = client['CeDRI_UGV']['BatteryApplication_battery'].aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Sensor', 'Calculate._id'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
     elif request.method=='POST':
         calculate_data=JSONParser().parse(request)
         calculate_serializer=CalculateSerializer(data=calculate_data)
@@ -140,7 +99,6 @@ def calculateApi(request,id=0):
         calculate=Calculate.objects.last()
         calculate_serializer=CalculateSerializer(calculate, many=False)
         return JsonResponse(calculate_serializer.data,safe=False)
-
 
 @csrf_exempt
 def batteryApi(request,id=0):
@@ -171,3 +129,16 @@ def batteryApi(request,id=0):
         battery=Battery.objects.last()
         battery_serializer=BatterySerializer(battery, many=False)
         return JsonResponse(battery_serializer.data,safe=False)
+
+def last():
+    
+    result = client['CeDRI_UGV']['BatteryApplication_battery'].aggregate([
+        {
+            '$sort': {
+                'dateTime': -1
+            }
+        }, {
+            '$limit': 1
+        }
+    ])
+    return result

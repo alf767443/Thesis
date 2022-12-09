@@ -10,28 +10,29 @@ import { url } from 'djangoAPI/url';
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'StatusId',
+        title: 'Time',
+        dataIndex: 'dateTime',
         key: 'id',
         sorter: {
-            compare: (a, b) => a.StatusId - b.StatusId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Percent',
-        dataIndex: 'StatusPercent',
-        key: 'percent'
+        dataIndex: ['Calculate','Percent'],
+        key: 'percent',
+        //render: item => Object.keys(item)[0]
     },
     {
-        title: 'Battery',
-        dataIndex: 'StatusBattery',
-        key: 'battery'
+        title: 'Status',
+        dataIndex: ['Calculate','Status'],
+        key: 'status'
     }
 ];
 
-const urls = 'battery/status';
+const urls = 'battery/calculate';
 
 // --------- table battery status - datatable --------- \\
 export class DataTable extends Component {
