@@ -1,5 +1,4 @@
 from rest_framework import serializers
-#from rest_framework_mongoengine import serializers
 from BatteryApplication.models import *
 
 class SensorSerializer(serializers.ModelSerializer):
@@ -17,7 +16,3 @@ class BatterySerializer(serializers.ModelSerializer):
         model=Battery
         fields=('__all__')
         depth = 1
-
-class BatteryFullSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields=('__all__')

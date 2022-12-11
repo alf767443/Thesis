@@ -4,12 +4,10 @@ from ActionsApplication.models import *
 class ActionsSerializer(serializers.ModelSerializer):
     class Meta:
         model=Actions
-        fields=('ActionsId', 'ActionsAction', 'ActionsStatus', 'ActionsPriority', 'ActionsSource')
+        fields=('__all__')
 
 class QueueSerializer(serializers.ModelSerializer):
-    actions = ActionsSerializer(read_only = True)
-
     class Meta:
         model=Queue
-        fields=('QueueId','QueueStatus','ActionsId','actions')
+        fields=('__all__')
         depth = 1

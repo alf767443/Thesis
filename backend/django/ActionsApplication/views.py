@@ -3,11 +3,15 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.renderers import JSONRenderer
+from pymongo import MongoClient
+import json, bson
 
 from ActionsApplication.models import *
 from ActionsApplication.serializers import *
 
 from django.core.files.storage import default_storage
+
+QueueDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['ActionsApplication_queue']
 
 # Actions API
 @csrf_exempt
@@ -43,39 +47,18 @@ def queueApi(request,id=0):
         queue_serializer=QueueSerializer(queue,many=True)
         return JsonResponse(queue_serializer.data,safe=False)
     elif request.method=='POST':
-        queue_data=JSONParser().parse(request)
-        queue_serializer=QueueSerializer(data=queue_data)
-        if queue_serializer.is_valid():
-            queue_serializer.save()
+        queue_data=JSONParser().parse(request)        
+        data = {
+            "QueueNumber" : queue_data['QueueNumber'],
+            "Action_id": bson.ObjectId(queue_data['Action'])
+        }
+        print(data)
+        try:
+            QueueDB.insert_one(data)
             return JsonResponse("Added Successfully",safe=False)
-        return JsonResponse("Failed to Add",safe=False)
-    elif request.method=='PUT':
-        queue_data=JSONParser().parse(request)
-        queue=Queue.objects.get(QueueId=queue_data['QueueId'])
-        queue_serializer=QueueSerializer(queue,data=queue_data)
-        if queue_serializer.is_valid():
-            queue_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
-        return JsonResponse("Failed to Update")
+        except:
+            return JsonResponse("Failed to Add",safe=False)
     elif request.method=='DELETE':
         queue=Queue.objects.get(QueueId=id)
         queue.delete()
         return JsonResponse("Deleted Successfully",safe=False)
-
-
-@csrf_exempt
-def actionsQueueApi(request,id=0):
-    if request.method=='GET':
-        actions = Actions.objects.all()
-        #Do or cancelled
-        actionsDo = actions.filter(ActionsStatus__in=['1'])
-        actionsDo_serializer = ActionsSerializer(actionsDo,many=True)
-        #ToDo
-        actionsToDo = actions.filter(ActionsStatus='0')
-        actionsToDo_serializer = ActionsSerializer(actionsDo,many=True)
-
-        actions_serializer=ActionsSerializer(actions,many=True)
-        teste = JSONRenderer().render(actions_serializer.data)
-        print(teste)
-        
-        return JsonResponse(actionsDo_serializer.data,safe=False)

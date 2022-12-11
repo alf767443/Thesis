@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'DecisionsApplication.apps.DecisionsapplicationConfig',
     'PositionApplication.apps.PositionapplicationConfig',
     'RouteApplication.apps.RouteapplicationConfig',
-    
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

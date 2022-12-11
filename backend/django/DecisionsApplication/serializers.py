@@ -4,14 +4,14 @@ from DecisionsApplication.models import *
 class AdministratorSerializer(serializers.ModelSerializer):
     class Meta:
         model=Administrator
-        fields=('AdministratorId', 'AdministratorDecision', 'AdministratorPriority')
+        fields=('__all__')
 
 class RemoteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Remote
-        fields=('RemoteId', 'RemoteDecision', 'RemotePriority')
+        fields=('__all__')
 
 class RobotSerializer(serializers.ModelSerializer):
     class Meta:
         model=Robot
-        fields=('RobotId', 'RobotDecision', 'RobotPriority')
+        fields=('__all__')

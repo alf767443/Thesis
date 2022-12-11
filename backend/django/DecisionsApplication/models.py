@@ -1,17 +1,35 @@
-from django.db import models
+from djongo import models as models
 
 # Create your models here.
 class Administrator(models.Model):
-    AdministratorId = models.AutoField(primary_key=True)
-    AdministratorDecision = models.IntegerField()
-    AdministratorPriority = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    dateTime = models.DateTimeField(auto_created=True, auto_now_add=True)
+    Decision = models.CharField(max_length=1)
+    Priority = models.CharField(max_length=1)
+
+    def __unicode__(self):
+        return self._id
+    
+    objects = models.DjongoManager()
     
 class Remote(models.Model):
-    RemoteId = models.AutoField(primary_key=True)
-    RemoteDecision = models.IntegerField()
-    RemotePriority = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    dateTime = models.DateTimeField(auto_created=True, auto_now_add=True)
+    Decision = models.CharField(max_length=1)
+    Priority = models.CharField(max_length=1)
+
+    def __unicode__(self):
+        return self._id
+    
+    objects = models.DjongoManager()
 
 class Robot(models.Model):
-    RobotId = models.AutoField(primary_key=True)
-    RobotDecision = models.IntegerField()
-    RobotPriority = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    dateTime = models.DateTimeField(auto_created=True, auto_now_add=True)
+    Decision = models.CharField(max_length=1)
+    Priority = models.CharField(max_length=1)
+
+    def __unicode__(self):
+        return self._id
+
+    objects = models.DjongoManager()

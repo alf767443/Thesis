@@ -1,22 +1,28 @@
 from rest_framework import serializers
-from PositionApplication.models import Odometry, Fiducial, Gyroscope, GlobalPosition
+from PositionApplication.models import *
 
 class OdometrySerializer(serializers.ModelSerializer):
     class Meta:
         model=Odometry
-        fields=('OdometryId', 'OdometryLeft', 'OdometryRight')
+        fields=('__all__')
 
 class FiducialSerializer(serializers.ModelSerializer):
     class Meta:
         model=Fiducial
-        fields=('FiducialId', 'FiducialMark')
+        fields=('__all__')
 
 class GyroscopeSerializer(serializers.ModelSerializer):
     class Meta:
         model=Gyroscope
-        fields=('GyroscopeId', 'GyroscopeAngle')
+        fields=('__all__')
 
 class GlobalPositionSerializer(serializers.ModelSerializer):
     class Meta:
         model=GlobalPosition
-        fields=('GlobalPositionId', 'GlobalPositionX', 'GlobalPositionY')
+        fields=('__all__')
+
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Position
+        fields=('__all__')
+        depth = 1
