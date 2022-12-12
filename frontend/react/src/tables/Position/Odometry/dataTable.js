@@ -7,31 +7,32 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'position/table=odometry';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'OdometryId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.OdometryId - b.OdometryId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Left',
-        dataIndex: 'OdometryLeft',
+        dataIndex: ['Odometry','Left'],
         key: 'left'
     },
     {
         title: 'Right',
-        dataIndex: 'OdometryRight',
+        dataIndex: ['Odometry','Right'],
         key: 'right'
     }
 ];
-
-const urls = 'position/odometry';
 
 // --------- table odometry - datatable --------- \\
 export class DataTable extends Component {

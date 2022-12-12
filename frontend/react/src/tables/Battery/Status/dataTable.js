@@ -7,6 +7,8 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+const urls = 'battery/table=calculate';
+
 // Define columns
 const columns = [
     {
@@ -23,7 +25,6 @@ const columns = [
         title: 'Percent',
         dataIndex: ['Calculate','Percent'],
         key: 'percent',
-        //render: item => Object.keys(item)[0]
     },
     {
         title: 'Status',
@@ -31,8 +32,6 @@ const columns = [
         key: 'status'
     }
 ];
-
-const urls = 'battery/calculate';
 
 // --------- table battery status - datatable --------- \\
 export class DataTable extends Component {

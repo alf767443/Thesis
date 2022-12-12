@@ -7,36 +7,42 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'actions/table=actions';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'ActionsId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.ActionsId - b.ActionsId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
+        title: 'Code',
+        dataIndex: 'Code',
+        key: 'code'
+    },
+    {
         title: 'Status',
-        dataIndex: 'ActionsStatus',
-        key: 'status'
+        dataIndex: 'Status',
+        key: 'Status'
     },
     {
         title: 'Priority',
-        dataIndex: 'ActionsPriority',
-        key: 'priority'
+        dataIndex: 'Priority',
+        key: 'Priority'
     },
     {
         title: 'Source',
-        dataIndex: 'ActionsSource',
-        key: 'source'
+        dataIndex: 'Source',
+        key: 'Source'
     }
 ];
-
-const urls = 'actions/actions';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

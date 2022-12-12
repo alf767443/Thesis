@@ -7,31 +7,32 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'decisions/table=robot';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'RobotId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.RobotId - b.RobotId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Decision',
-        dataIndex: 'RobotDecision',
+        dataIndex: 'Decision',
         key: 'decision'
     },
     {
         title: 'Priority',
-        dataIndex: 'RobotPriority',
+        dataIndex: 'Priority',
         key: 'priority'
     }
 ];
-
-const urls = 'decision/robot';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

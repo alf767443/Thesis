@@ -7,31 +7,32 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'decisions/table=administrator';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'AdministratorId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.AdministratorId - b.AdministratorId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Decision',
-        dataIndex: 'AdministratorDecision',
+        dataIndex: 'Decision',
         key: 'decision'
     },
     {
         title: 'Priority',
-        dataIndex: 'AdministratorPriority',
+        dataIndex: 'Priority',
         key: 'priority'
     }
 ];
-
-const urls = 'decision/administrator';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

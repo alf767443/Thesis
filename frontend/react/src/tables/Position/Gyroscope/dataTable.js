@@ -7,26 +7,27 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'position/table=gyroscope';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'GyroscopeId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.GyroscopeId - b.GyroscopeId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Angle',
-        dataIndex: 'GyroscopeAngle',
+        dataIndex: ['Gyroscope','Angle'],
         key: 'angle'
     }
 ];
-
-const urls = 'position/gyroscope';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

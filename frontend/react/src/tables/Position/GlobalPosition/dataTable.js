@@ -7,31 +7,32 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'position/table=globalposition';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'GlobalPositionId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.GlobalPositionId - b.GlobalPositionId,
-            multiple: 3
+            compare: (a, b) => a.dateTime - b.dateTime,
+            multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'X',
-        dataIndex: 'GlobalPositionX',
-        key: 'x'
+        dataIndex: ['GlobalPosition','X'],
+        key: 'mark'
     },
     {
         title: 'Y',
-        dataIndex: 'GlobalPositionY',
-        key: 'y'
+        dataIndex: ['GlobalPosition','Y'],
+        key: 'mark'
     }
 ];
-
-const urls = 'position/globalposition';
 
 // --------- table globalposition - datatable --------- \\
 export class DataTable extends Component {

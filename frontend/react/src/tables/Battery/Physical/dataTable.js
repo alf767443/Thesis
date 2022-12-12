@@ -7,36 +7,37 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'battery/table=sensor';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'PhysicalId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.PhysicalId - b.PhysicalId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Voltage',
-        dataIndex: 'PhysicalVoltage',
-        key: 'voltage'
-    },
-    {
-        title: 'Temperature',
-        dataIndex: 'PhysicalTemperature',
+        dataIndex: ['Sensor','Voltage'],
         key: 'voltage'
     },
     {
         title: 'Current',
-        dataIndex: 'PhysicalCurrent',
+        dataIndex: ['Sensor','Current'],
         key: 'current'
+    },
+    {
+        title: 'Temperature',
+        dataIndex: ['Sensor','Temperature'],
+        key: 'temperature'
     }
 ];
-
-const urls = 'battery/sensor';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

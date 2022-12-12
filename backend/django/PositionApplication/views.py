@@ -9,37 +9,79 @@ from PositionApplication.serializers import *
 
 from django.core.files.storage import default_storage
 
+PositionDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['PositionApplication_position']
+
 # Odometry API
 @csrf_exempt
 def odometryApi(request,id=0):
     if request.method=='GET':
-        odometry = Odometry.objects.all()
-        odometry_serializer=OdometrySerializer(odometry,many=True)
-        return JsonResponse(odometry_serializer.data,safe=False)
+        result = PositionDB.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Odometry._id', 'Fiducial', 'Gyroscope', 'GlobalPosition'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
     
 # Fiducial marks API
 @csrf_exempt
 def fiducialApi(request,id=0):
     if request.method=='GET':
-        fiducial = Fiducial.objects.all()
-        fiducial_serializer=FiducialSerializer(fiducial,many=True)
-        return JsonResponse(fiducial_serializer.data,safe=False)
+        result = PositionDB.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Odometry', 'Fiducial._id', 'Gyroscope', 'GlobalPosition'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
 
 # Gyroscope API
 @csrf_exempt
 def gyroscopeApi(request,id=0):
     if request.method=='GET':
-        gyroscope = Gyroscope.objects.all()
-        gyroscope_serializer=GyroscopeSerializer(gyroscope,many=True)
-        return JsonResponse(gyroscope_serializer.data,safe=False)
- 
+        result = PositionDB.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Odometry', 'Fiducial', 'Gyroscope._id', 'GlobalPosition'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
+
 # Global position API
 @csrf_exempt
 def globalpositionApi(request,id=0):
     if request.method=='GET':
-        globalposition = GlobalPosition.objects.all()
-        globalposition_serializer=GlobalPositionSerializer(globalposition,many=True)
-        return JsonResponse(globalposition_serializer.data,safe=False)
+        result = PositionDB.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id', 'Odometry', 'Fiducial', 'Gyroscope', 'GlobalPosition._id'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
 
 @csrf_exempt
 def  positionApi(request,id=0):

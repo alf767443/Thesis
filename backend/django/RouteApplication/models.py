@@ -1,5 +1,5 @@
 from djongo import models as models
-from PositionApplication.models import Position
+from PositionApplication.models import *
 
 
 # Create your models here.

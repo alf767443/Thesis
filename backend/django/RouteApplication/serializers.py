@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from RouteApplication.models import *
+from PositionApplication.models import *
 
 
 class DataSerializer(serializers.ModelSerializer):
@@ -11,4 +12,4 @@ class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Route
         fields=('__all__')
-        depth = 1
+        depth = 2

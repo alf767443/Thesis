@@ -7,31 +7,26 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'actions/table=queue';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'QueueId',
-        key: 'id',
+        title: 'Queue',
+        dataIndex: 'QueueNumber',
+        key: 'queuenumber',
         sorter: {
-            compare: (a, b) => a.QueueId - b.QueueId,
-            multiple: 1
+            compare: (a, b) => a.QueueNumber - b.QueueNumber,
         },
-        defaultSortOrder: 'descend'
+        defaultSortOrder: 'ascend'
     },
     {
-        title: 'Status',
-        dataIndex: 'QueueStatus',
-        key: 'status'
-    },
-    {
-        title: 'ActionsId',
-        dataIndex: 'ActionsId_id',
-        key: 'priority'
+        title: 'Action',
+        dataIndex: ['Action','_id'],
+        key: 'action'
     }
 ];
-
-const urls = 'actions/queue';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

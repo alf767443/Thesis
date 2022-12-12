@@ -7,31 +7,32 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'decisions/table=remote';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'RemoteId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.RemoteId - b.RemoteId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Decision',
-        dataIndex: 'RemoteDecision',
+        dataIndex: 'Decision',
         key: 'decision'
     },
     {
         title: 'Priority',
-        dataIndex: 'RemotePriority',
+        dataIndex: 'Priority',
         key: 'priority'
     }
 ];
-
-const urls = 'decision/remote';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {

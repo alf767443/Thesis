@@ -7,26 +7,27 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
+// URL
+const urls = 'position/table=fiducialmark';
+
 // Define columns
 const columns = [
     {
-        title: 'Id',
-        dataIndex: 'FiducialId',
-        key: 'id',
+        title: 'Time',
+        dataIndex: 'dateTime',
+        key: 'dateTime',
         sorter: {
-            compare: (a, b) => a.FiducialId - b.FiducialId,
+            compare: (a, b) => a.dateTime - b.dateTime,
             multiple: 1
         },
         defaultSortOrder: 'descend'
     },
     {
         title: 'Mark',
-        dataIndex: 'FiducialMark',
+        dataIndex: ['Fiducial','Mark'],
         key: 'mark'
     }
 ];
-
-const urls = 'position/fiducialmark';
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {
