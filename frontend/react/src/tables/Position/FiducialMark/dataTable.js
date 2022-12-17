@@ -53,7 +53,6 @@ export class DataTable extends Component {
 
     render() {
         console.log(this.state.data);
-
         return (
             <Table
                 columns={columns}

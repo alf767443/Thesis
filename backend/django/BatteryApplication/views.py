@@ -79,3 +79,97 @@ def batteryApi(request,id=0):
         battery=Battery.objects.last()
         battery_serializer=BatterySerializer(battery, many=False)
         return JsonResponse(battery_serializer.data,safe=False)
+
+# Query
+@csrf_exempt
+def queryApi(request,query=0):
+    if request.method=='GET':
+        # First item of battery db
+        if query == '1':
+            result = BatteryDB.aggregate([
+                {
+                    '$unset': [
+                        '_id'
+                    ]
+                },
+                {
+                    '$sort': {
+                        'dateTime': -1
+                    }
+                },
+                {
+                    '$limit': 1
+                }
+            ])
+            result = list(result)  
+        # Plot percent by time 
+        elif query == '2':
+            result = BatteryDB.aggregate([
+                {
+                    '$project': {
+                        'Calculate': 1, 
+                        'Sensor': 1, 
+                        'dateTime': {
+                            '$dateTrunc': {
+                                'date': '$dateTime', 
+                                'unit': 'minute'
+                            }
+                        }
+                    }
+                }, {
+                    '$addFields': {
+                        'Status': '$Calculate.Status', 
+                        'Percent': {
+                            '$multiply': [
+                                '$Calculate.Percent', 100
+                            ]
+                        }
+                    }
+                }, {
+                    '$unset': [
+                        '_id', 'Sensor', 'Calculate'
+                    ]
+                }, {
+                    '$densify': {
+                        'field': 'dateTime', 
+                        'range': {
+                            'step': 1, 
+                            'unit': 'minute', 
+                            'bounds': 'full'
+                        }
+                    }
+                }, {
+                    '$group': {
+                        '_id': '$dateTime', 
+                        'dateTime': {
+                            '$first': '$dateTime'
+                        }, 
+                        'Percent': {
+                            '$avg': '$Percent'
+                        }, 
+                        'Status': {
+                            '$first': '$Status'
+                        }, 
+                        'count': {
+                            '$sum': 1
+                        }
+                    }
+                }, {'$set': {
+                        'Percent': {'$round': ['$Percent',3]}
+                    }
+                }, {
+                    '$sort': {
+                        'dateTime': -1
+                    }
+                }, {
+                    '$limit': 4320
+                }, {
+                    '$sort': {
+                        'dateTime': 1
+                    }
+                }
+            ])
+            result = list(result)  
+        else:
+            result = "No query was setting"
+        return JsonResponse(result,safe=False)

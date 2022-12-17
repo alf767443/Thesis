@@ -43,9 +43,28 @@ def actionsApi(request,id=0):
 @csrf_exempt
 def queueApi(request,id=0):
     if request.method=='GET':
-        queue = Queue.objects.all()
-        queue_serializer=QueueSerializer(queue,many=True)
-        return JsonResponse(queue_serializer.data,safe=False)
+        queue = QueueDB.aggregate([
+            {
+                '$sort': {
+                    'QueueNumber': 1
+                }
+            }, {
+                '$lookup': {
+                    'from': 'ActionsApplication_actions', 
+                    'localField': 'Action_id', 
+                    'foreignField': '_id', 
+                    'as': 'Action'
+                }
+            }, {
+                '$unwind': '$Action'
+            }, {
+                '$unset': [
+                    '_id', 'Action_id', 'Action._id'
+                ]
+            }
+        ])
+        result = list(queue)
+        return JsonResponse(result,safe=False)
     elif request.method=='POST':
         queue_data=JSONParser().parse(request)        
         data = {
