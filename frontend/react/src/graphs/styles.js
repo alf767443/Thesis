@@ -13,13 +13,6 @@ const styles = {
             height: 200
         }
     },
-    icon: {
-        style: {
-            width: 150,
-            height: 150,
-            color: 'gray'
-        }
-    },
     stack: {
         direction: 'column',
         alignItems: 'center',

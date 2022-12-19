@@ -6,6 +6,16 @@ class OdometrySerializer(serializers.ModelSerializer):
         model=Odometry
         fields=('__all__')
 
+class VelocitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Velocity
+        fields=('__all__')
+
+class AccelerationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Acceleration
+        fields=('__all__')
+
 class FiducialSerializer(serializers.ModelSerializer):
     class Meta:
         model=Fiducial
