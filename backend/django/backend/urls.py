@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^',include('ActionsApplication.urls')),
     url(r'^',include('BatteryApplication.urls')),
     url(r'^',include('DecisionsApplication.urls')),
+    url(r'^',include('MotorApplication.urls')),
     url(r'^',include('PositionApplication.urls')),
     url(r'^',include('RouteApplication.urls'))
 ]

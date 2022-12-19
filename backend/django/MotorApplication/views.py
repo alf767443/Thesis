@@ -4,12 +4,12 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from pymongo import MongoClient
 
-from PositionApplication.models import *
-from PositionApplication.serializers import *
+from MotorApplication.models import *
+from MotorApplication.serializers import *
 
 from django.core.files.storage import default_storage
 
-PositionDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['PositionApplication_position']
+PositionDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['MotorApplication_motor']
 
 # Query table API
 @csrf_exempt
@@ -36,27 +36,27 @@ def tableApi(request,query=''):
 
 # Full database
 @csrf_exempt
-def  positionApi(request,id=0):
+def  motorApi(request,id=0):
     if request.method=='GET':
-        position =  Position.objects.all()
-        position_serializer= PositionSerializer( position,many=True)
-        return JsonResponse(position_serializer.data,safe=False)
+        motor =  Motor.objects.all()
+        motor_serializer= MotorSerializer( motor,many=True)
+        return JsonResponse(motor_serializer.data,safe=False)
     elif request.method=='POST':
-        position_data=JSONParser().parse(request)
-        position_serializer= PositionSerializer(data= position_data)
-        if position_serializer.is_valid():
-            position_serializer.save()
+        motor_data=JSONParser().parse(request)
+        motor_serializer= MotorSerializer(data= motor_data)
+        if motor_serializer.is_valid():
+            motor_serializer.save()
             return JsonResponse("Added Successfully",safe=False)
         return JsonResponse("Failed to Add",safe=False)
     elif request.method=='PUT':
-        position_data=JSONParser().parse(request)
-        position= Position.objects.get( PositionId= position_data[' PositionId'])
-        position_serializer= PositionSerializer( position,data= position_data)
-        if position_serializer.is_valid():
-            position_serializer.save()
+        motor_data=JSONParser().parse(request)
+        motor= Motor.objects.get( MotorId= motor_data[' MotorId'])
+        motor_serializer= MotorSerializer( motor,data= motor_data)
+        if motor_serializer.is_valid():
+            motor_serializer.save()
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update")
     elif request.method=='DELETE':
-        position= Position.objects.get( PositionId=id)
-        position.delete()
+        motor= Motor.objects.get( MotorId=id)
+        motor.delete()
         return JsonResponse("Deleted Successfully",safe=False)
