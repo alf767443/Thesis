@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from MotorApplication.models import *
 
+class PWMSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=PWM
+        fields=('__all__')
+
 class VoltageSerializer(serializers.ModelSerializer):
     class Meta:
         model=Voltage

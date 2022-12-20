@@ -19,6 +19,7 @@ class Calculate(models.Model):
     _id         = models.ObjectIdField(primary_key=True)
     Status      = models.CharField(max_length=1, blank=True, null=True)
     Percent     = models.FloatField(blank=True, null=True)
+    Power       = models.FloatField(blank=True, null=True)
     
     class Meta:
         managed = False
