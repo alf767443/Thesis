@@ -22,6 +22,7 @@ def tableApi(request,query=''):
                 }
             }, {
                 '$project': {
+                    'dateTime': 1,
                     query: 1
                 }
             }, {
@@ -38,9 +39,19 @@ def tableApi(request,query=''):
 @csrf_exempt
 def  positionApi(request,id=0):
     if request.method=='GET':
-        position =  Position.objects.all()
-        position_serializer= PositionSerializer( position,many=True)
-        return JsonResponse(position_serializer.data,safe=False)
+        result = PositionDB.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
     elif request.method=='POST':
         position_data=JSONParser().parse(request)
         position_serializer= PositionSerializer(data= position_data)

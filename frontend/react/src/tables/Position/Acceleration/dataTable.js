@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { url } from 'djangoAPI/url';
 
 // URL
-const urls = 'position/table=Fiducial';
+const urls = 'position/table=Acceleration';
 
 // Define columns
 const columns = [
@@ -23,13 +23,18 @@ const columns = [
         defaultSortOrder: 'descend'
     },
     {
-        title: 'Mark',
-        dataIndex: ['Fiducial','Mark'],
-        key: 'mark'
+        title: 'Left',
+        dataIndex: ['Acceleration','Left'],
+        key: 'left'
+    },
+    {
+        title: 'Right',
+        dataIndex: ['Acceleration','Right'],
+        key: 'right'
     }
 ];
 
-// --------- table fiducialmark - datatable --------- \\
+// --------- table odometry - datatable --------- \\
 export class DataTable extends Component {
     constructor(props) {
         super(props);
@@ -53,6 +58,7 @@ export class DataTable extends Component {
 
     render() {
         console.log(this.state.data);
+
         return (
             <Table
                 columns={columns}

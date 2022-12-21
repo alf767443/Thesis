@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { url } from 'djangoAPI/url';
 
 // URL
-const urls = 'position/table=odometry';
+const urls = 'position/position';
 
 // Define columns
 const columns = [
@@ -21,16 +21,48 @@ const columns = [
             multiple: 1
         },
         defaultSortOrder: 'descend'
-    },
-    {
+    }, {
         title: 'Left',
-        dataIndex: ['Odometry','Left'],
-        key: 'left'
-    },
-    {
+        align: 'center',
+        children:[
+            {
+                title: 'Odometry',
+                align: 'center',
+                dataIndex: ['Odometry','Left'],
+                key: 'O_left'
+            }, {
+                title: 'Velocity',
+                align: 'center',
+                dataIndex: ['Velocity','Left'],
+                key: 'V_left'
+            }, {
+                title: 'Acceleration',
+                align: 'center',
+                dataIndex: ['Acceleration','Left'],
+                key: 'A_left'
+            }
+        ]
+    }, {
         title: 'Right',
-        dataIndex: ['Odometry','Right'],
-        key: 'right'
+        align: 'center',
+        children:[
+            {
+                title: 'Odometry',
+                align: 'center',
+                dataIndex: ['Odometry','Right'],
+                key: 'O_right'
+            }, {
+                title: 'Velocity',
+                align: 'center',
+                dataIndex: ['Velocity','Right'],
+                key: 'V_right'
+            }, {
+                title: 'Acceleration',
+                align: 'center',
+                dataIndex: ['Acceleration','Right'],
+                key: 'A_right'
+            }
+        ]
     }
 ];
 

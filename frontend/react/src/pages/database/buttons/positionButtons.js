@@ -1,5 +1,5 @@
 // material-ui
-import { Grid, Typography, Stack } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { TireRepair, QrCode2, Explore, GpsFixed } from '@mui/icons-material';
 // project import
 import DataBaseButtons from './button';
@@ -27,7 +27,7 @@ export const PositionButtons = () => {
                     lg={gridParameters.lg}
                     xl={gridParameters.xl}
                 >
-                    <DataBaseButtons href={'dbs/position/odometry'} Title={'Odometry'} Icon={TireRepair} />
+                    <DataBaseButtons href={'dbs/position/odometry'} Title={'Whell'} Icon={TireRepair} />
                 </Grid>
                 <Grid
                     item

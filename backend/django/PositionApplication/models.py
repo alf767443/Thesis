@@ -2,8 +2,8 @@ from djongo import models as models
 
 class Odometry(models.Model):
     _id = models.ObjectIdField()
-    Left = models.FloatField(blank=True, null=True)
-    Right = models.FloatField(blank=True, null=True)
+    Left = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
+    Right = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
     
     class Meta:
         managed = False
@@ -13,8 +13,8 @@ class Odometry(models.Model):
 
 class Velocity(models.Model):
     _id = models.ObjectIdField()
-    Left = models.FloatField(blank=True, null=True)
-    Right = models.FloatField(blank=True, null=True)
+    Left = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
+    Right = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
     
     class Meta:
         managed = False
@@ -24,8 +24,8 @@ class Velocity(models.Model):
 
 class Acceleration(models.Model):
     _id = models.ObjectIdField()
-    Left = models.FloatField(blank=True, null=True)
-    Right = models.FloatField(blank=True, null=True)
+    Left = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
+    Right = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
     
     class Meta:
         managed = False
@@ -45,7 +45,7 @@ class Fiducial(models.Model):
 
 class Gyroscope(models.Model):
     _id = models.ObjectIdField()
-    Angle = models.FloatField(blank=True, null=True)
+    Angle = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
     
     class Meta:
         managed = False
@@ -55,8 +55,8 @@ class Gyroscope(models.Model):
 
 class GlobalPosition(models.Model):
     _id = models.ObjectIdField()
-    X = models.FloatField(blank=True, null=True)
-    Y = models.FloatField(blank=True, null=True)
+    X = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
+    Y = models.DecimalField(decimal_places=3, max_digits=6, blank=True, null=True)
     
     class Meta:
         managed = False

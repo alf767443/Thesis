@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { url } from 'djangoAPI/url';
 
 // URL
-const urls = 'position/table=gyroscope';
+const urls = 'position/table=Gyroscope';
 
 // Define columns
 const columns = [

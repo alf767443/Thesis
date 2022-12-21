@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { url } from 'djangoAPI/url';
 
 // URL
-const urls = 'position/table=globalposition';
+const urls = 'position/table=GlobalPosition';
 
 // Define columns
 const columns = [
