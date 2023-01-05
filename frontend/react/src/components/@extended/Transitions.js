@@ -59,4 +59,6 @@ Transitions.defaultProps = {
     position: 'top-left'
 };
 
+Transitions.displayName = 'Transistion_Component'
+
 export default Transitions;

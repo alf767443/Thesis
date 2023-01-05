@@ -1,11 +1,8 @@
 // material-ui
-import { Box, IconButton, Link, useMediaQuery } from '@mui/material';
-import { GithubOutlined } from '@ant-design/icons';
+import { Box, useMediaQuery } from '@mui/material';
 
 // project import
-import Profile from './Profile';
 import Notification from './Notification';
-import MobileSection from './MobileSection';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 

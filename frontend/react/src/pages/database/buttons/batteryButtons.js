@@ -1,5 +1,5 @@
 // material-ui
-import { Grid, Typography, Stack } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { BatteryCharging90, BatterySaver } from '@mui/icons-material';
 // project import
 import DataBaseButtons from './button';

@@ -1,15 +1,15 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 
 // material-ui
-import { Grid, Box, Typography, Stack } from '@mui/material';
+import { Grid, Typography, Stack } from '@mui/material';
 // project import
-import DataBaseButtons from './buttons/button';
+//import DataBaseButtons from './buttons/button';
 import { PositionButtons } from './buttons/positionButtons';
 import { BatteryButtons } from './buttons/batteryButtons';
 import { ActionButtons } from './buttons/actionButtons';
 import { RouteButtons } from './buttons/routeButtons';
 import { DecisionButtons } from './buttons/decisionButtons';
-import { gridParameters, stackParameters } from './styles';
+import { stackParameters } from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 

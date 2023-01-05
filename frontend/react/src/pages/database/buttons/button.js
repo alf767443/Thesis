@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Icon, IconButton, Box, Typography, Stack } from '@mui/material';
-import TireRepairIcon from '@mui/icons-material/TireRepair';
+import { IconButton, Box, Typography, Stack } from '@mui/material';
+//import TireRepairIcon from '@mui/icons-material/TireRepair';
 import MainCard from 'components/MainCard';
 
 import styles from './styles';
-import { ThirtyFpsSelect } from '../../../../node_modules/@mui/icons-material/index';
+//import { ThirtyFpsSelect } from '../../../../node_modules/@mui/icons-material/index';
 
 export default class DataBaseButtons extends React.Component {
     constructor(props) {

@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/display-name
 // Import from React
 import { forwardRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -145,5 +146,7 @@ NavItem.propTypes = {
     item: PropTypes.object,
     level: PropTypes.number
 };
+
+NavItem.displayName = 'NavItem_Drawer'
 
 export default NavItem;

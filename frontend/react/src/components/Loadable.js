@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/display-name
 import { Suspense } from 'react';
 
 // project import
@@ -12,4 +13,6 @@ const Loadable = (Component) => (props) =>
         </Suspense>
     );
 
+
 export default Loadable;
+

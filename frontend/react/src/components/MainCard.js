@@ -106,4 +106,7 @@ MainCard.propTypes = {
     children: PropTypes.node
 };
 
+
+MainCard.displayName = 'MainCard_Component'
+
 export default MainCard;
