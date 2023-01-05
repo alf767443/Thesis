@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { url } from 'djangoAPI/url';
 
 // URL
-const urls = 'battery/table=sensor';
+const urls = 'battery/table=Sensor';
 
 // Define columns
 const columns = [

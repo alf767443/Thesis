@@ -14,48 +14,50 @@ from backend.class_readURL import *
 
 # Create your views here.
 
-BatteryDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['BatteryApplication_battery']
+database = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['BatteryApplication_battery']
 
+# Query table API
 @csrf_exempt
-def sensorApi(request,id=0):
+def tableApi(request,query=''):
     if request.method=='GET':
-        result = BatteryDB.aggregate([
+        result = database.aggregate([
             {
                 '$sort': {
                     'dateTime': -1
                 }
             }, {
-                '$unset': [
-                    '_id', 'Sensor._id', 'Calculate'
-                ]
-            }
-        ])
-        result = list(result)
-        return JsonResponse(result,safe=False)
-  
-@csrf_exempt
-def calculateApi(request,id=0):
-    if request.method=='GET':
-        result = BatteryDB.aggregate([
-            {
-                '$sort': {
-                    'dateTime': -1
+                '$project': {
+                    'dateTime': 1,
+                    query: 1
                 }
             }, {
                 '$unset': [
-                    '_id', 'Sensor', 'Calculate._id'
+                    '_id', query+'._id'
                 ]
             }
         ])
         result = list(result)
         return JsonResponse(result,safe=False)
-        
+
+
+
+# Full database
 @csrf_exempt
 def batteryApi(request,id=0):
     if request.method=='GET':
-        battery = Battery.objects.all()
-        battery_serializer=BatterySerializer(battery,many=True)
-        return JsonResponse(battery_serializer.data,safe=False)
+        result = database.aggregate([
+            {
+                '$sort': {
+                    'dateTime': -1
+                }
+            }, {
+                '$unset': [
+                    '_id'
+                ]
+            }
+        ])
+        result = list(result)
+        return JsonResponse(result,safe=False)
     elif request.method=='POST':
         battery_data=JSONParser().parse(request)
         battery_serializer=BatterySerializer(data=battery_data)
@@ -86,7 +88,7 @@ def queryApi(request,query=0):
     if request.method=='GET':
         # First item of battery db
         if query == '1':
-            result = BatteryDB.aggregate([
+            result = database.aggregate([
                 {
                     '$unset': [
                         '_id'
@@ -104,7 +106,7 @@ def queryApi(request,query=0):
             result = list(result)  
         # Plot percent by time 
         elif query == '2':
-            result = BatteryDB.aggregate([
+            result = database.aggregate([
                 {
                     '$project': {
                         'Calculate': 1, 

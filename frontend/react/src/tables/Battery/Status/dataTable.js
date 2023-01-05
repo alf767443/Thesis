@@ -7,7 +7,7 @@ import { Table } from 'antd';
 // Import from project
 import { url } from 'djangoAPI/url';
 
-const urls = 'battery/table=calculate';
+const urls = 'battery/table=Calculate';
 
 // Define columns
 const columns = [

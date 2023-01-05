@@ -2,7 +2,7 @@
     "name": "cedri-ugv-dashboard",
     "version": "0.0.1",
     "private": true,
-    "homepage": "http://localhost:3000/UGV",
+    "homepage": "http://alf767443.github.io/Thesis",
     "dependencies": {
         "@ant-design/colors": "^6.0.0",
         "@ant-design/icons": "^4.8.0",
@@ -23,6 +23,7 @@
         "eslint": "^8.29.0",
         "formik": "^2.2.9",
         "framer-motion": "^7.3.6",
+        "gh-pages": "^4.0.0",
         "history": "^5.3.0",
         "html-react-parser": "^3.0.4",
         "jquery": "^3.6.1",
@@ -54,6 +55,8 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

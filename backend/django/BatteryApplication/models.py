@@ -4,9 +4,9 @@ from djongo import models as models
 # Create your models here.
 class Sensor(models.Model):
     _id         = models.ObjectIdField(primary_key=True)
-    Voltage     = models.FloatField(blank=True, null=True)
-    Current     = models.FloatField(blank=True, null=True)
-    Temperature = models.FloatField(blank=True, null=True)
+    Voltage     = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+    Current     = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+    Temperature = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -18,8 +18,8 @@ class Sensor(models.Model):
 class Calculate(models.Model):
     _id         = models.ObjectIdField(primary_key=True)
     Status      = models.CharField(max_length=1, blank=True, null=True)
-    Percent     = models.FloatField(blank=True, null=True)
-    Power       = models.FloatField(blank=True, null=True)
+    Percent     = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+    Power       = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
     
     class Meta:
         managed = False

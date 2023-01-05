@@ -9,13 +9,13 @@ from PositionApplication.serializers import *
 
 from django.core.files.storage import default_storage
 
-PositionDB = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['PositionApplication_position']
+database = MongoClient('mongodb://localhost:27017/')['CeDRI_UGV']['PositionApplication_position']
 
 # Query table API
 @csrf_exempt
 def tableApi(request,query=''):
     if request.method=='GET':
-        result = PositionDB.aggregate([
+        result = database.aggregate([
             {
                 '$sort': {
                     'dateTime': -1
@@ -39,7 +39,7 @@ def tableApi(request,query=''):
 @csrf_exempt
 def  positionApi(request,id=0):
     if request.method=='GET':
-        result = PositionDB.aggregate([
+        result = database.aggregate([
             {
                 '$sort': {
                     'dateTime': -1
