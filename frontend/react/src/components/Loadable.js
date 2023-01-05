@@ -7,8 +7,6 @@ import Loader from './Loader';
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 
 const Loadable = (Component) => (props) =>
-
-    Loadable.displayName = 'Loadable';
     (
         <Suspense fallback={<Loader />}>
             <Component {...props} />
@@ -17,4 +15,3 @@ const Loadable = (Component) => (props) =>
 
 
 export default Loadable;
-
