@@ -147,6 +147,6 @@ NavItem.propTypes = {
     level: PropTypes.number
 };
 
-NavItem.displayName = 'NavItem_Drawer'
+NavItem.displayName = 'NavItem_Drawer';
 
 export default NavItem;

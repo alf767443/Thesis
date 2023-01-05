@@ -13,6 +13,7 @@ const Loadable = (Component) => (props) =>
         </Suspense>
     );
 
+Loadable.displayName = 'Loadable';
 
 export default Loadable;
 
