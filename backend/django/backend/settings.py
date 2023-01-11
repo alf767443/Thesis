@@ -46,12 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_mongoengine',
     'corsheaders',
-    'ActionsApplication.apps.ActionsapplicationConfig',
-    'BatteryApplication.apps.BatteryapplicationConfig',
-    'DecisionsApplication.apps.DecisionsapplicationConfig',
-    'PositionApplication.apps.PositionapplicationConfig',
-    'RouteApplication.apps.RouteapplicationConfig',
-    'MotorApplication.apps.MotorapplicationConfig'
+    'MongoDB.apps.MongodbConfig',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

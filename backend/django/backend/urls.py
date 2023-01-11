@@ -20,10 +20,5 @@ from django.urls import include, path, re_path as url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^',include('ActionsApplication.urls')),
-    url(r'^',include('BatteryApplication.urls')),
-    url(r'^',include('DecisionsApplication.urls')),
-    url(r'^',include('MotorApplication.urls')),
-    url(r'^',include('PositionApplication.urls')),
-    url(r'^',include('RouteApplication.urls'))
+    url(r'^',include('MongoDB.urls')),
 ]
